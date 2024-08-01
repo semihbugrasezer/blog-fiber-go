@@ -26,7 +26,7 @@ COPY --from=builder /app/views ./views
 COPY --from=builder /app/static ./static
 
 # Expose port
-EXPOSE 3000
+EXPOSE 8000
 
 # Command to run the executable
 CMD ["./main"]

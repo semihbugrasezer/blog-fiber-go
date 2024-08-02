@@ -1,6 +1,5 @@
 # Use the official Golang image to create a build artifact.
 FROM golang:1.22.5 AS builder
-WORKDIR /app
 
 # Copy go mod and sum files
 COPY go.mod go.sum ./
@@ -19,11 +18,11 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
 # Copy the binary from the builder stage
-COPY --from=builder /app/main .
+COPY --from=builder / .
 
 # Copy views and static files
-COPY --from=builder /app/views ./views
-COPY --from=builder /app/static ./static
+COPY --from=builder /views ./views
+COPY --from=builder /static ./static
 
 # Expose port
 EXPOSE 8000
